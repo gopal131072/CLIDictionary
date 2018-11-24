@@ -28,8 +28,16 @@ let argumentParser = async (numberOfArguments, args) => {
                     break;
             }
         }
-        else if (numberOfArguments == 1)
-            await dictionaryService.getDictionary(args[0]);
+        else if (numberOfArguments == 1){
+            switch (args[0]) {
+            case "play":
+                await oxfordService.gameService.playGame();
+                break;
+            default:
+                await dictionaryService.getDictionary(args[0]);
+                break;
+            }
+        }
         else if (numberOfArguments == 0) {
             process.stdout.write("The word of the day is ");
             await wordOfTheDayService.getWordOfTheDay();
@@ -37,10 +45,7 @@ let argumentParser = async (numberOfArguments, args) => {
         else
             console.log("Invalid number of arguments. Please look through the help section for more details.");
     } catch (error) {
-        if(error.response.status == 404)
-            console.log("I'm sorry the word you supplied was not recognized.");
-        else
-            console.log(error);
+        console.log(error);
     }
 }
 
