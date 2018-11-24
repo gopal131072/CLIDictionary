@@ -7,5 +7,4 @@ module.exports = {
     dictionaryService : require("./dictionaryService"),
     wordOfTheDayService : require("./wordOfTheDayService"),
     gameService : require("./gameService"),
-    parsingService : require("./parsingService")
 };

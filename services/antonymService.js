@@ -13,7 +13,6 @@ var getAntonyms = async (word) => {
         return antonyms.data;
     } catch (error) {
         console.log(error);
-        throw(error);
     }
 };
 

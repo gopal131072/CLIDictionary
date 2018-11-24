@@ -4,16 +4,18 @@ const axios = require("axios");
 // Internal Libraries import
 const config = require("../config");
 const exampleHelper = require("../helpers/exampleHelper");
+const printingHelper = require("../helpers/printingHelper");
 
 var getExamples = async (word) => {
     try{
-        let examples = await axios(config.apiUrl + "/entries/en/" + word, 
+        let example = await axios(config.apiUrl + "/entries/en/" + word, 
             {headers: { "app_id" : config.authorization.appId, "app_key" : config.authorization.appKey }});
         // Helper function to parse through the response and retrieve the definition
-        definitionHelper.definitionParser(examples.data);
+        examples = await exampleHelper.exampleParser(example.data);
+        printingHelper.examplePrinter(examples, word);
     } catch (error) {
-        console.log(error);
-        throw(error);
+        console.log("No examples found");
+        //console.log(error);
     }
 };
 

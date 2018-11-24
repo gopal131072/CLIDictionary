@@ -13,7 +13,6 @@ var getSynonyms = async (word) => {
         return synonyms.data;
     } catch (error) {
         console.log(error);
-        throw(error);
     }
 };
 

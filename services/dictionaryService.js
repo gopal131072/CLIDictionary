@@ -13,7 +13,6 @@ var getDictionary = async (word) => {
         return dictionary.data;
     } catch (error) {
         console.log(error);
-        throw(error);
     }
 };
 
