@@ -12,4 +12,5 @@ let parser = async () => {
     await parsingService.argumentParser(numberOfArguments, args);
 }
 
-parser()
+// Runs the built parser
+parser();

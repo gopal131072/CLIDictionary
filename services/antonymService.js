@@ -17,7 +17,7 @@ var getAntonyms = async (word) => {
         if(error.response.status == 404)
             console.log("I'm sorry the word you supplied does not have antonyms.");
         else
-            console.log(error)
+            throw error;
     }
 };
 

@@ -12,12 +12,12 @@ var getExamples = async (word) => {
             {headers: { "app_id" : config.authorization.appId, "app_key" : config.authorization.appKey }});
         // Helper function to parse through the response and retrieve the definition
         examples = await exampleHelper.exampleParser(example.data);
-        printingHelper.examplePrinter(examples, word);
+        printingHelper.examplePrinter(examples);
     } catch (error) {
         if(error.response.status == 404)
             console.log("I'm sorry the word you supplied was not recognized.");
         else
-            console.log(error)
+            throw error;
     }
 };
 

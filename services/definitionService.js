@@ -18,7 +18,7 @@ var getDefinition = async (word) => {
         if(error.response.status == 404)
             console.log("I'm sorry the word you supplied was not recognized.");
         else
-            console.log(error)
+            throw error;
     }
 };
 

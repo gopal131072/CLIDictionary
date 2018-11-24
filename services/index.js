@@ -4,7 +4,5 @@ module.exports = {
     synonymService : require("./synonymService"),
     antonymService : require("./antonymService"),
     exampleService : require("./exampleService"),
-    dictionaryService : require("./dictionaryService"),
-    wordOfTheDayService : require("./wordOfTheDayService"),
     gameService : require("./gameService"),
 };

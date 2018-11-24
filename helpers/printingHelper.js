@@ -7,9 +7,10 @@ let definitionPrinter = (definitions, word) => {
         console.log(count + ". " + definition.lexicalCategory + " - " + definition.definition);
         count++;
     }
+    console.log();
 }
 
-let examplePrinter = (examples, word) => {
+let examplePrinter = (examples) => {
     if (examples.length != 0) {
         // Printing after the examples object is parsed to make sure the examples exist.
         console.log("Examples : ")
@@ -18,6 +19,7 @@ let examplePrinter = (examples, word) => {
             console.log(count + ". " + example.lexicalCategory + " - " + example.example);
             count++;
         }
+        console.log();
     }  
     else
         console.log("No examples found");
@@ -26,15 +28,19 @@ let examplePrinter = (examples, word) => {
 let synonymPrinter = async (synonyms) => {
     console.log("Synonyms : ");
     for(synonym of synonyms) {
-        console.log(synonym)
+        process.stdout.write(synonym + ", ")
     }
+    console.log();
+    console.log();
 }
 
 let antonymPrinter = async (antonyms) => {
     console.log("Antonyms : ");
     for(antonym of antonyms) {
-        console.log(antonym)
+        process.stdout.write(antonym + ", ")
     }
+    console.log();
+    console.log();
 }
 
 module.exports = {
