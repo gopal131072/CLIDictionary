@@ -1,0 +1,28 @@
+{
+  "name": "command_line_dictionary",
+  "version": "0.1.0",
+  "description": "A dictionary with a CLI built as a API wrapper around the Oxford Dictionary API.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"No testing library yet\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gopal131072/CommandLineDictionary.git"
+  },
+  "keywords": [
+    "oxford",
+    "nodejs",
+    "dictionary"
+  ],
+  "author": "Gopal Sharma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gopal131072/CommandLineDictionary/issues"
+  },
+  "homepage": "https://github.com/gopal131072/CommandLineDictionary#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
