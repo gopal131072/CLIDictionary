@@ -14,8 +14,10 @@ var getExamples = async (word) => {
         examples = await exampleHelper.exampleParser(example.data);
         printingHelper.examplePrinter(examples, word);
     } catch (error) {
-        console.log("No examples found");
-        //console.log(error);
+        if(error.response.status == 404)
+            console.log("I'm sorry the word you supplied was not recognized.");
+        else
+            console.log(error)
     }
 };
 

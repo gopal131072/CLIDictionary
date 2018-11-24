@@ -39,7 +39,6 @@ jspm_packages/
 # Custom files
 package-lock.json
 .vscode
-config.js
 
 # TypeScript v1 declaration files
 typings/
