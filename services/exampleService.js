@@ -15,12 +15,10 @@ var getExamples = async (word) => {
         if(examples.length != 0)
             return examples;
         else {
-            console.log("I'm sorry the word you supplied does not have any examples");
+            console.log("The word you supplied does not have any examples.\n");
             return undefined;
         }
     } catch (error) {
-        if(error.response.status == 404)
-            console.log("No examples found");
         throw error;
     }
 };

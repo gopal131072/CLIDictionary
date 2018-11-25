@@ -1,58 +1,27 @@
-// External Libraries
-const axios = require("axios");
-
 // Internal Libraries
 const config = require("../config");
-const definitionHelper = require("../helpers/definitionHelper");
-const synonymHelper = require("../helpers/synonymHelper");
-const antonymHelper = require("../helpers/antonymHelper");
-const gameHelper = require("../helpers/gameHelper");
-
-// List of random words generated over at randomlists.org
-const words = [ "egg", "crate", "remind", "vast", "snore", "rude", "harm", "ant", "stay", "green", "unnatural", 
-                "ripe","attractive", "few", "level", "obedient", "request", "queue", "premium", "sweltering", "general", 
-                "fashion", "walk", "fancy", "coast", "design", "goose", "circle", "import", 'dead', "noise", 
-                "care", "scream", "dime", "tie", "grandiose", "tent", "dress", "stupendous", "spike" ];
+const oxfordService = require("../services");
+const printingHelper = require("../helpers/printingHelper");
                 
 let playGame = async () => {
-    var word = words[Math.floor(Math.random()*40)];
+    let word = config.words[Math.floor(Math.random()*(config.words.length))];
+    var definition, synonym, antonym;
     try {
-        var definition = await axios(config.apiUrl + "/entries/en/" + word, 
-        {headers: { "app_id" : config.authorization.appId, "app_key" : config.authorization.appKey }});
+        definition = await oxfordService.definitionService.getDefinition(word);
     } catch (error) {
-        if(error.response.status != 404)
-            throw error;
+        throw error;
     }
     try {
-        var definitions = await definitionHelper.definitionParser(definition.data);
+        synonym = await oxfordService.synonymService.getSynonyms(word);
     } catch (error) {
-        console.log("No definitions available");
+        synonym = null;
     }
     try {
-        var synonym = await axios(config.apiUrl + "/entries/en/" + word + "/synonyms", 
-        {headers: { "app_id" : config.authorization.appId, "app_key" : config.authorization.appKey }});
+        antonym = await oxfordService.antonymService.getAntonyms(word);
     } catch (error) {
-        if(error.response.status != 404)
-            throw error;
+        antonym = null;
     }
-    try {
-        var synonyms = await synonymHelper.synonymParser(synonym.data);
-    } catch (error) {
-        //console.log("No synonyms available");
-    }
-    try {
-        var antonym = await axios(config.apiUrl + "/entries/en/" + word + "/antonyms", 
-        {headers: { "app_id" : config.authorization.appId, "app_key" : config.authorization.appKey }});
-    } catch (error) {
-        if(error.response.status != 404)
-            throw error;
-    }
-    try {
-        var antonyms = await antonymHelper.antonymParser(antonym.data);
-    } catch (error) {
-        //console.log("No antonyms available");
-    }
-    gameHelper.game(definitions, synonyms, antonyms, word);
+    gameHelper.game(definition, synonym, antonym);
 }
 
 module.exports = {

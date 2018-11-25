@@ -13,10 +13,7 @@ var getAntonyms = async (word) => {
         antonyms = await antonymHelper.antonymParser(antonym.data);
         return antonyms;
     } catch (error) {
-        if(error.response.status == 404)
-            console.log("I'm sorry the word you supplied does not have antonyms.");
-        else
-            throw error;
+        throw error;
     }
 };
 

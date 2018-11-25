@@ -13,8 +13,6 @@ var getDefinition = async (word) => {
         definitions = await definitionHelper.definitionParser(definition.data);
         return definitions;
     } catch (error) {
-        if(error.response.status == 404)
-            console.log("I'm sorry the word you supplied was not recognized.");
         throw error;
     }
 };

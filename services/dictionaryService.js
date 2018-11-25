@@ -6,18 +6,31 @@ const oxfordService = require("../services");
 const printingHelper = require("../helpers/printingHelper");
 
 var getDictionary = async (word) => {
-    try {
-        definition = await oxfordService.definitionService.getDefinition(word);
-        printingHelper.definitionPrinter(definition, word);
-        example = await oxfordService.exampleService.getExamples(word);
-        printingHelper.examplePrinter(example);
-        synonym = await oxfordService.synonymService.getSynonyms(word);
-        printingHelper.synonymPrinter(synonym);
-        antonym = await oxfordService.antonymService.getAntonyms(word);
-        printingHelper.antonymPrinter(antonym);
-    } catch (error) {
-        console.log("Exiting");
-    }
+        try {
+            let definition = await oxfordService.definitionService.getDefinition(word);
+            await printingHelper.definitionPrinter(definition, word);
+        } catch (error) {
+            console.log("The word you supplied does not exist.\n");
+            throw error;
+        }
+        try {
+            let example = await oxfordService.exampleService.getExamples(word);
+            await printingHelper.examplePrinter(example);
+        } catch (error) {
+            console.log("The word you supplied does not have any examples.\n");
+        }
+        try {
+            let synonym = await oxfordService.synonymService.getSynonyms(word);
+            await printingHelper.synonymPrinter(synonym);
+        } catch (error) {
+            console.log("The word you supplied does not have any synonyms.\n");
+        }
+        try {
+            let antonym = await oxfordService.antonymService.getAntonyms(word);
+            await printingHelper.antonymPrinter(antonym);
+        } catch (error) {
+            console.log("The word you supplied does not have any antonyms.\n");
+        }
 };
 
 module.exports = {

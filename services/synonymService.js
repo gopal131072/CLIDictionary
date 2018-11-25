@@ -14,10 +14,7 @@ var getSynonyms = async (word) => {
         synonyms = await synonymHelper.synonymParser(synonym.data);
         return synonyms;
     } catch (error) {
-        if(error.response.status == 404)
-            console.log("I'm sorry the word you supplied does not have synonyms.");
-        else
-            throw error;
+        throw error;
     }
 };
 

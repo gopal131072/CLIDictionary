@@ -2,59 +2,84 @@
 const oxfordService = require("../services");
 const dictionaryService = require("./dictionaryService");
 const wordOfTheDayService = require("./wordOfTheDayService");
+const gameService = require("./gameService");
 const printingHelper = require("../helpers/printingHelper");
 
 // Function to parse through the documents and determine appropriate service to be used.
 let argumentParser = async (numberOfArguments, args) => {
-    try {
-        if (numberOfArguments == 2) {
-            switch (args[0]) {
-                case "def":
-                    definition = await oxfordService.definitionService.getDefinition(args[1]);
+    if (numberOfArguments == 2) {
+        switch (args[0]) {
+            case "def":
+                try {
+                    let definition = await oxfordService.definitionService.getDefinition(args[1]);
                     await printingHelper.definitionPrinter(definition, args[1]);
-                    break;
-                case "syn":
-                    synonym = await oxfordService.synonymService.getSynonyms(args[1]);
-                    await printingHelper.synonymPrinter(synonym);
-                    break;
-                case "ant":
-                    antonym = await oxfordService.antonymService.getAntonyms(args[1]);
-                    await printingHelper.antonymPrinter(antonym);
-                    break;
-                case "ex":
-                    example = await oxfordService.exampleService.getExamples(args[1]);
-                    await printingHelper.examplePrinter(example);
-                    break;
-                case "dict":
-                    await dictionaryService.getDictionary(args[1]);
-                    break;
-                default:
-                    console.log("Invalid argument passed : " + args[0]);
-                    break;
-            }
-        }
-        else if (numberOfArguments == 1){
-            switch (args[0]) {
-            case "play":
-                await oxfordService.gameService.playGame();
+                } catch (error) {
+                    console.log("The word you supplied does not exist.\n");
+                }
                 break;
-            case "help":
-                await printingHelper.helpPrinter();
+            case "syn":
+                try {
+                    let synonym = await oxfordService.synonymService.getSynonyms(args[1]);
+                    await printingHelper.synonymPrinter(synonym);
+                } catch (error) {
+                    console.log("The word you supplied does not have any synonyms.\n");
+                }
+                break;
+            case "ant":
+                try {
+                    let antonym = await oxfordService.antonymService.getAntonyms(args[1]);
+                    await printingHelper.antonymPrinter(antonym);
+                } catch (error) {
+                    console.log("The word you supplied does not have any antonyms.\n");
+                }
+                break;
+            case "ex":
+                try {
+                    let example = await oxfordService.exampleService.getExamples(args[1]);
+                    await printingHelper.examplePrinter(example);
+                } catch (error) {
+                    console.log("The word you supplied does not have any examples.\n");
+                }
+                break;
+            case "dict":
+                try {
+                    await dictionaryService.getDictionary(args[1]);
+                } catch (error) {
+                    console.log("Exiting\n");
+                } 
                 break;
             default:
-                await dictionaryService.getDictionary(args[0]);
+                console.log("Invalid argument passed : " + args[0]);
                 break;
-            }
         }
-        else if (numberOfArguments == 0) {
-            process.stdout.write("The word of the day is ");
-            await wordOfTheDayService.getWordOfTheDay();
-        }
-        else
-            console.log("Invalid number of arguments. Please look through the help section for more details.");
-    } catch (error) {
-        console.log("Exiting");
     }
+    else if (numberOfArguments == 1){
+        switch (args[0]) {
+        case "play":
+            try {
+                await gameService.playGame();
+            } catch (error) {
+                console.log("Error initiating the game");
+            }
+            break;
+        case "help":
+            await printingHelper.helpPrinter();
+            break;
+        default:
+            try {
+                await dictionaryService.getDictionary(args[0]);
+            } catch (error) {
+                console.log("Exiting");
+            } 
+            break;
+        }
+    }
+    else if (numberOfArguments == 0) {
+        process.stdout.write("The word of the day is ");
+        await wordOfTheDayService.getWordOfTheDay();
+    }
+    else
+        console.log("Invalid number of arguments. Please look through the help section for more details.");
 }
 
 module.exports = {
