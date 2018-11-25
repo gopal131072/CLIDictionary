@@ -5,7 +5,7 @@ const axios = require("axios");
 const config = require("../config");
 const definitionHelper = require("../helpers/definitionHelper");
 
-var getDefinition = async (word) => {
+let getDefinition = async (word) => {
     try{
         let definition = await axios(config.apiUrl + "/entries/en/" + word, 
             {headers: { "app_id" : config.authorization.appId, "app_key" : config.authorization.appKey }});

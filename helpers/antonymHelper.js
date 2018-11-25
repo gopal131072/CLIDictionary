@@ -1,4 +1,4 @@
-var antonymParser = async (data) => {
+let antonymParser = async (data) => {
     try {
         // An array to hold all the definitons
         let antonyms = [];
@@ -16,7 +16,7 @@ var antonymParser = async (data) => {
     } catch (error) {
         throw error;
     }
-}
+};
 
 module.exports = {
     antonymParser

@@ -80,7 +80,7 @@ let argumentParser = async (numberOfArguments, args) => {
     }
     else
         console.log("Invalid number of arguments. Please refer to the documentation on https://www.github.com/gopal131072/CLIDictionary");
-}
+};
 
 module.exports = {
     argumentParser

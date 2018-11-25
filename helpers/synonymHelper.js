@@ -1,4 +1,4 @@
-var synonymParser = async (data) => {
+let synonymParser = async (data) => {
     try {
         // An array to hold all the definitons
         let synonyms = [];
@@ -16,7 +16,7 @@ var synonymParser = async (data) => {
     } catch (error) {
         throw error;
     }
-}
+};
 
 module.exports = {
     synonymParser

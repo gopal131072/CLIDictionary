@@ -5,7 +5,7 @@ const axios = require("axios");
 const oxfordService = require("../services");
 const printingHelper = require("../helpers/printingHelper");
 
-var getDictionary = async (word) => {
+let getDictionary = async (word) => {
         try {
             let definition = await oxfordService.definitionService.getDefinition(word);
             printingHelper.definitionPrinter(definition, word);

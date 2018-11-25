@@ -2,9 +2,9 @@
 const config = require("../config");
 const oxfordService = require("../services");
 const gameHelper = require("../helpers/gameHelper");
-const printingHelper = require("../helpers/printingHelper");
 
 let playGame = async () => {
+    console.log("\nLets play a game! Try to guess what word this is.");
     let hints = {"definitions" : [], "synonyms" : [], "antonyms" : []};
     let word = config.words[Math.floor(Math.random()*(config.words.length))];
     var definition, synonym, antonym;
@@ -28,8 +28,7 @@ let playGame = async () => {
         antonym = null;
     }
     try {
-        printingHelper.gamePrinter(hints);
-        gameHelper.promptAnswer(word, synonym);
+        gameHelper.startGame(word, definition, synonym, antonym, hints);
     } catch (error) {
         console.log("Error initializing game");
     }

@@ -12,7 +12,7 @@ let definitionPrinter = (definitions, word) => {
         }
         console.log();
     }
-}
+};
 
 let examplePrinter = (examples) => {
     if (typeof examples != "undefined") {
@@ -26,7 +26,7 @@ let examplePrinter = (examples) => {
         }
         console.log();
     }  
-}
+};
 
 let synonymPrinter = (synonyms) => {
     if (typeof synonyms != "undefined") {
@@ -42,7 +42,7 @@ let synonymPrinter = (synonyms) => {
         console.log();
         console.log();
     }
-}
+};
 
 let antonymPrinter = (antonyms) => {
     if (typeof antonyms != "undefined") {
@@ -58,26 +58,42 @@ let antonymPrinter = (antonyms) => {
         console.log();
         console.log();
     }
-}
+};
 
 let gamePrinter = (hints) => {
-    console.log("Lets play a game! Try to guess what word this is.");
+    console.log("--------------------------------------------------------------------------------------");
+    console.log("Definitions : ");
     for (definition of hints.definitions) {
-        console.log("Definition : " + definition.definition);
+        console.log("\u25CF " + definition.definition);
     }
+    console.log("--------------------------------------------------------------------------------------");
+    console.log("Synonyms : ");
     for (synonym of hints.synonyms) {
-    if(synonym)
-        console.log("Synonym : " + synonym.synonym);
+        if(synonym)
+            console.log("\u25CF " + synonym.synonym);
     }
+    console.log("--------------------------------------------------------------------------------------");
+    console.log("Antonyms : ");
     for (antonym of hints.antonyms) {
-    if(antonym)
-        console.log("Antonym : " + antonym.antonym);
+        if(antonym)
+            console.log("\u25CF " + antonym.antonym);
     }
-}
+    console.log("--------------------------------------------------------------------------------------");
+};
+
+let choicePrinter = () => {
+    console.log("--------------------------------------------------------------------------------------");
+    console.log("I'm afraid that's not right. Would you like to keep trying?");
+    console.log("Please choose one of the following options");
+    console.log("1. Try again");
+    console.log("2. Get a hint");
+    console.log("3. Quit");
+    console.log("--------------------------------------------------------------------------------------");
+};
 
 let helpPrinter = () => {
     console.log("Please refer to the documentation on https://www.github.com/gopal131072/CLIDictionary");
-}
+};
 
 module.exports = {
     definitionPrinter,
@@ -85,5 +101,6 @@ module.exports = {
     synonymPrinter,
     antonymPrinter,
     gamePrinter,
+    choicePrinter,
     helpPrinter
 };

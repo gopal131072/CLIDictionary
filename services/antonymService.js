@@ -5,7 +5,7 @@ const axios = require("axios");
 const config = require("../config");
 const antonymHelper = require("../helpers/antonymHelper");
 
-var getAntonyms = async (word) => {
+let getAntonyms = async (word) => {
     try{
         let antonym = await axios(config.apiUrl + "/entries/en/" + word + "/antonyms", 
             {headers: { "app_id" : config.authorization.appId, "app_key" : config.authorization.appKey }});

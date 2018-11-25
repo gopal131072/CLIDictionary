@@ -18,7 +18,7 @@ let definitionParser = async (data) => {
     } catch (error) {
         throw error;
     }
-}
+};
 
 module.exports = {
     definitionParser

@@ -4,9 +4,8 @@ const axios = require("axios");
 // Internal Libraries import
 const config = require("../config");
 const synonymHelper = require("../helpers/synonymHelper");
-const printingHelper = require("../helpers/printingHelper");
 
-var getSynonyms = async (word) => {
+let getSynonyms = async (word) => {
     try{
         let synonym = await axios(config.apiUrl + "/entries/en/" + word + "/synonyms", 
             {headers: { "app_id" : config.authorization.appId, "app_key" : config.authorization.appKey }});

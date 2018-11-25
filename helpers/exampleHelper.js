@@ -20,7 +20,7 @@ let exampleParser = async (data) => {
     } catch (error) {
         throw error;
     }
-}
+};
 
 module.exports = {
     exampleParser
