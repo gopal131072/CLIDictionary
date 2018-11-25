@@ -6,7 +6,6 @@ const dictionaryService = require("../services/dictionaryService");
 const printingHelper = require("../helpers/printingHelper");
 
 let startGame = async (word, definition, synonym, antonym, hints) => {
-    console.log(word);
     printingHelper.gamePrinter(hints);
     await promptAnswer(word, definition, synonym, antonym, hints);
 };
@@ -95,6 +94,10 @@ let generateHints = async (word, definition, synonym, antonym, hints) => {
             emptyHandler = 4;
         else if (synonym.length > hints.synonyms.length && definition.length > hints.definitions.length)
             emptyHandler = 3;
+        else if(definition.length > hints.definitions.length)
+            emptyHandler = 2;
+        else
+            emptyHandler = 1;
     }
     else if (typeof definition != "undefined" && definition != null) {
         if(definition.length > hints.definitions.length)
@@ -107,7 +110,9 @@ let generateHints = async (word, definition, synonym, antonym, hints) => {
     }
     switch (Math.floor(Math.random()*emptyHandler)) {
         case 0: {
+            console.log("--------------------------------------------------------------------------------------");
             console.log("Here's the word all jumbled up " + jumbleWord(word));
+            console.log("--------------------------------------------------------------------------------------");
             promptFinalAnswer(word, definition, synonym, antonym, hints);
             break;
         }

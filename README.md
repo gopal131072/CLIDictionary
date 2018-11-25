@@ -6,8 +6,12 @@ This project depends on two libraries, namely :
 * **Prompt** - For the prompts in the game section
 
 ## Pre-requisites
-* Clone the project with a `git clone https://github.com/gopal131072/CLIDictionary`.
-* The packages can be installed through npm using the command `npm install`.
+* Clone the project with 
+
+    `git clone https://github.com/gopal131072/CLIDictionary`
+* The packages can be installed through npm using the command 
+
+    `npm install`
 * Get your appId and apiKey from [oxford dictionaries](https://developer.oxforddictionaries.com/documentation/getting_started).
 * Plug in your appId and apiKey in config.js.
 * Run the app with `node app`.
