@@ -14,7 +14,6 @@ var synonymParser = async (data) => {
         }
         return synonyms;
     } catch (error) {
-        console.log(error);
         throw error;
     }
 }

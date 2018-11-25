@@ -1,4 +1,4 @@
-let definitionPrinter = (definitions, word) => {
+let definitionPrinter = async (definitions, word) => {
     if(typeof definitions != "undefined"){
         console.log(word);
         console.log("Definition : ")
@@ -11,7 +11,7 @@ let definitionPrinter = (definitions, word) => {
     }
 }
 
-let examplePrinter = (examples) => {
+let examplePrinter = async (examples) => {
     if (typeof examples != "undefined") {
         // Printing after the examples object is parsed to make sure the examples exist.
         console.log("Examples : ")
@@ -51,10 +51,6 @@ let antonymPrinter = async (antonyms) => {
     }
 }
 
-let gamePrinter = (word, definitions, synonyms, antonyms) => {
-    console.log(word);
-}
-
 let helpPrinter = () => {
     console.log("Use valid arguments");
 }
@@ -64,6 +60,5 @@ module.exports = {
     examplePrinter,
     synonymPrinter,
     antonymPrinter,
-    gamePrinter,
     helpPrinter
 };

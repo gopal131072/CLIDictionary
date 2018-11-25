@@ -14,7 +14,6 @@ var antonymParser = async (data) => {
         }
         return antonyms;
     } catch (error) {
-        console.log(error);
         throw error;
     }
 }
