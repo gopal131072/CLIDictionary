@@ -10,26 +10,26 @@ var getDictionary = async (word) => {
             let definition = await oxfordService.definitionService.getDefinition(word);
             await printingHelper.definitionPrinter(definition, word);
         } catch (error) {
-            console.log("The word you supplied does not exist.\n");
+            console.log("The word does not exist.\n");
             throw error;
         }
         try {
             let example = await oxfordService.exampleService.getExamples(word);
             await printingHelper.examplePrinter(example);
         } catch (error) {
-            console.log("The word you supplied does not have any examples.\n");
+            console.log("The word does not have any examples.\n");
         }
         try {
             let synonym = await oxfordService.synonymService.getSynonyms(word);
             await printingHelper.synonymPrinter(synonym);
         } catch (error) {
-            console.log("The word you supplied does not have any synonyms.\n");
+            console.log("The word does not have any synonyms.\n");
         }
         try {
             let antonym = await oxfordService.antonymService.getAntonyms(word);
             await printingHelper.antonymPrinter(antonym);
         } catch (error) {
-            console.log("The word you supplied does not have any antonyms.\n");
+            console.log("The word does not have any antonyms.\n");
         }
 };
 

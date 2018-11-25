@@ -1,7 +1,10 @@
 let definitionPrinter = async (definitions, word) => {
     if(typeof definitions != "undefined"){
-        console.log(word);
-        console.log("Definition : ")
+        console.log();
+        console.log(word.toUpperCase());
+        console.log("----------------------------------------------------------------------------");
+        console.log("Definition : ");
+        console.log("----------------------------------------------------------------------------");
         let count = 1;
         for (let definition of definitions) {
             console.log(count + ". " + definition.lexicalCategory + " - " + definition.definition);
@@ -13,8 +16,9 @@ let definitionPrinter = async (definitions, word) => {
 
 let examplePrinter = async (examples) => {
     if (typeof examples != "undefined") {
-        // Printing after the examples object is parsed to make sure the examples exist.
-        console.log("Examples : ")
+        console.log("----------------------------------------------------------------------------");
+        console.log("Examples : ");
+        console.log("----------------------------------------------------------------------------");
         let count = 1;
         for (let example of examples) {
             console.log(count + ". " + example.lexicalCategory + " - " + example.example);
@@ -26,7 +30,9 @@ let examplePrinter = async (examples) => {
 
 let synonymPrinter = async (synonyms) => {
     if (typeof synonyms != "undefined") {
+        console.log("----------------------------------------------------------------------------");
         console.log("Synonyms : ");
+        console.log("----------------------------------------------------------------------------");
         for(index in synonyms) {
             if(index != synonyms.length-1)
                 process.stdout.write(synonyms[index] + ", ");
@@ -40,7 +46,9 @@ let synonymPrinter = async (synonyms) => {
 
 let antonymPrinter = async (antonyms) => {
     if (typeof antonyms != "undefined") {
+        console.log("----------------------------------------------------------------------------");
         console.log("Antonyms : ");
+        console.log("----------------------------------------------------------------------------");
         for(index in antonyms) {
             if(index != antonyms.length-1)
                 process.stdout.write(antonyms[index] + ", ");
@@ -48,11 +56,12 @@ let antonymPrinter = async (antonyms) => {
                 process.stdout.write(antonyms[index]);
         }
         console.log();
+        console.log();
     }
 }
 
 let helpPrinter = () => {
-    console.log("Use valid arguments");
+    console.log("Please refer to the documentation on https://www.github.com/gopal131072/CLIDictionary");
 }
 
 module.exports = {
