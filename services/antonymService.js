@@ -4,7 +4,6 @@ const axios = require("axios");
 // Internal Libraries import
 const config = require("../config");
 const antonymHelper = require("../helpers/antonymHelper");
-const printingHelper = require("../helpers/printingHelper");
 
 var getAntonyms = async (word) => {
     try{
@@ -12,7 +11,7 @@ var getAntonyms = async (word) => {
             {headers: { "app_id" : config.authorization.appId, "app_key" : config.authorization.appKey }});
         // Helper function to parse through the response and retrieve the antonyms
         antonyms = await antonymHelper.antonymParser(antonym.data);
-        printingHelper.antonymPrinter(antonyms);
+        return antonyms;
     } catch (error) {
         if(error.response.status == 404)
             console.log("I'm sorry the word you supplied does not have antonyms.");

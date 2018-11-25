@@ -2,6 +2,7 @@
 const oxfordService = require("../services");
 const dictionaryService = require("./dictionaryService");
 const wordOfTheDayService = require("./wordOfTheDayService");
+const printingHelper = require("../helpers/printingHelper");
 
 // Function to parse through the documents and determine appropriate service to be used.
 let argumentParser = async (numberOfArguments, args) => {
@@ -9,16 +10,20 @@ let argumentParser = async (numberOfArguments, args) => {
         if (numberOfArguments == 2) {
             switch (args[0]) {
                 case "def":
-                    await oxfordService.definitionService.getDefinition(args[1]);
+                    definition = await oxfordService.definitionService.getDefinition(args[1]);
+                    await printingHelper.definitionPrinter(definition, args[1]);
                     break;
                 case "syn":
-                    await oxfordService.synonymService.getSynonyms(args[1]);
+                    synonym = await oxfordService.synonymService.getSynonyms(args[1]);
+                    await printingHelper.synonymPrinter(synonym);
                     break;
                 case "ant":
-                    await oxfordService.antonymService.getAntonyms(args[1]);
+                    antonym = await oxfordService.antonymService.getAntonyms(args[1]);
+                    await printingHelper.antonymPrinter(antonym);
                     break;
                 case "ex":
-                    await oxfordService.exampleService.getExamples(args[1]);
+                    example = await oxfordService.exampleService.getExamples(args[1]);
+                    await printingHelper.examplePrinter(example);
                     break;
                 case "dict":
                     await dictionaryService.getDictionary(args[1]);
@@ -33,6 +38,9 @@ let argumentParser = async (numberOfArguments, args) => {
             case "play":
                 await oxfordService.gameService.playGame();
                 break;
+            case "help":
+                await printingHelper.helpPrinter();
+                break;
             default:
                 await dictionaryService.getDictionary(args[0]);
                 break;
@@ -45,7 +53,7 @@ let argumentParser = async (numberOfArguments, args) => {
         else
             console.log("Invalid number of arguments. Please look through the help section for more details.");
     } catch (error) {
-        console.log(error);
+        console.log("Exiting");
     }
 }
 
