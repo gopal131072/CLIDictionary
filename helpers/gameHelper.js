@@ -54,7 +54,7 @@ let promptFinalAnswer = async (word, definition, synonym, antonym, hints) => {
         console.log("That's right!");
     }
     else {
-        console.log("Before you leave, here's the word : ");
+        console.log("Here's the word : ");
         await dictionaryService.getDictionary(word);
     }
 };

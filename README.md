@@ -5,16 +5,27 @@ This project depends on two libraries, namely :
 * **Axios** - For async GET requests to the Oxford Dictionaries API
 * **Prompt** - For the prompts in the game section
 
-## Pre-requisites
+## Pre-requisites and Instructions
+### Pre-requisites
+---
+* NodeJS - The project was built with node and will as such require the runtime to run it. The version used as of this README update is the 10.13.0 LTS version. 
+### Instructions
+---
 * Clone the project with 
 
     `git clone https://github.com/gopal131072/CLIDictionary`
-* The packages can be installed through npm using the command 
+* The packages mentioned above can be installed through npm using the command 
 
     `npm install`
-* Get your appId and apiKey from [oxford dictionaries](https://developer.oxforddictionaries.com/documentation/getting_started).
-* Plug in your appId and apiKey in config.js.
-* Run the app with `node app`.
+    
+    or can be manually installed with 
+    
+    `npm install --save axios prompt`
+* Get your appId and apiKey from [oxford dictionaries developer documentation](https://developer.oxforddictionaries.com/documentation/getting_started).
+* Plug in your appId and apiKey in config.js in the authorization object.
+* Run the app with 
+
+	`node app` or `npm start`
 ## Usage and CLI Arguments
 * The ***def*** argument defines a word supplied after it.
 
