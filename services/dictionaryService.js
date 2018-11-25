@@ -8,26 +8,26 @@ const printingHelper = require("../helpers/printingHelper");
 var getDictionary = async (word) => {
         try {
             let definition = await oxfordService.definitionService.getDefinition(word);
-            await printingHelper.definitionPrinter(definition, word);
+            printingHelper.definitionPrinter(definition, word);
         } catch (error) {
             console.log("The word does not exist.\n");
             throw error;
         }
         try {
             let example = await oxfordService.exampleService.getExamples(word);
-            await printingHelper.examplePrinter(example);
+            printingHelper.examplePrinter(example);
         } catch (error) {
             console.log("The word does not have any examples.\n");
         }
         try {
             let synonym = await oxfordService.synonymService.getSynonyms(word);
-            await printingHelper.synonymPrinter(synonym);
+            printingHelper.synonymPrinter(synonym);
         } catch (error) {
             console.log("The word does not have any synonyms.\n");
         }
         try {
             let antonym = await oxfordService.antonymService.getAntonyms(word);
-            await printingHelper.antonymPrinter(antonym);
+            printingHelper.antonymPrinter(antonym);
         } catch (error) {
             console.log("The word does not have any antonyms.\n");
         }

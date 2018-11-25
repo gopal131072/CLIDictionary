@@ -1,10 +1,10 @@
-let definitionPrinter = async (definitions, word) => {
+let definitionPrinter = (definitions, word) => {
     if(typeof definitions != "undefined"){
         console.log();
         console.log(word.toUpperCase());
-        console.log("----------------------------------------------------------------------------");
+        console.log("--------------------------------------------------------------------------------------");
         console.log("Definition : ");
-        console.log("----------------------------------------------------------------------------");
+        console.log("--------------------------------------------------------------------------------------");
         let count = 1;
         for (let definition of definitions) {
             console.log(count + ". " + definition.lexicalCategory + " - " + definition.definition);
@@ -14,11 +14,11 @@ let definitionPrinter = async (definitions, word) => {
     }
 }
 
-let examplePrinter = async (examples) => {
+let examplePrinter = (examples) => {
     if (typeof examples != "undefined") {
-        console.log("----------------------------------------------------------------------------");
+        console.log("--------------------------------------------------------------------------------------");
         console.log("Examples : ");
-        console.log("----------------------------------------------------------------------------");
+        console.log("--------------------------------------------------------------------------------------");
         let count = 1;
         for (let example of examples) {
             console.log(count + ". " + example.lexicalCategory + " - " + example.example);
@@ -28,11 +28,11 @@ let examplePrinter = async (examples) => {
     }  
 }
 
-let synonymPrinter = async (synonyms) => {
+let synonymPrinter = (synonyms) => {
     if (typeof synonyms != "undefined") {
-        console.log("----------------------------------------------------------------------------");
+        console.log("--------------------------------------------------------------------------------------");
         console.log("Synonyms : ");
-        console.log("----------------------------------------------------------------------------");
+        console.log("--------------------------------------------------------------------------------------");
         for(index in synonyms) {
             if(index != synonyms.length-1)
                 process.stdout.write(synonyms[index] + ", ");
@@ -44,11 +44,11 @@ let synonymPrinter = async (synonyms) => {
     }
 }
 
-let antonymPrinter = async (antonyms) => {
+let antonymPrinter = (antonyms) => {
     if (typeof antonyms != "undefined") {
-        console.log("----------------------------------------------------------------------------");
+        console.log("--------------------------------------------------------------------------------------");
         console.log("Antonyms : ");
-        console.log("----------------------------------------------------------------------------");
+        console.log("--------------------------------------------------------------------------------------");
         for(index in antonyms) {
             if(index != antonyms.length-1)
                 process.stdout.write(antonyms[index] + ", ");
@@ -57,6 +57,21 @@ let antonymPrinter = async (antonyms) => {
         }
         console.log();
         console.log();
+    }
+}
+
+let gamePrinter = (hints) => {
+    console.log("Lets play a game! Try to guess what word this is.");
+    for (definition of hints.definitions) {
+        console.log("Definition : " + definition.definition);
+    }
+    for (synonym of hints.synonyms) {
+    if(synonym)
+        console.log("Synonym : " + synonym.synonym);
+    }
+    for (antonym of hints.antonyms) {
+    if(antonym)
+        console.log("Antonym : " + antonym.antonym);
     }
 }
 
@@ -69,5 +84,6 @@ module.exports = {
     examplePrinter,
     synonymPrinter,
     antonymPrinter,
+    gamePrinter,
     helpPrinter
 };

@@ -12,7 +12,7 @@ let argumentParser = async (numberOfArguments, args) => {
             case "def":
                 try {
                     let definition = await oxfordService.definitionService.getDefinition(args[1]);
-                    await printingHelper.definitionPrinter(definition, args[1]);
+                    printingHelper.definitionPrinter(definition, args[1]);
                 } catch (error) {
                     console.log("The word you supplied does not exist.\n");
                 }
@@ -20,7 +20,7 @@ let argumentParser = async (numberOfArguments, args) => {
             case "syn":
                 try {
                     let synonym = await oxfordService.synonymService.getSynonyms(args[1]);
-                    await printingHelper.synonymPrinter(synonym);
+                    printingHelper.synonymPrinter(synonym);
                 } catch (error) {
                     console.log("The word you supplied does not have any synonyms.\n");
                 }
@@ -28,7 +28,7 @@ let argumentParser = async (numberOfArguments, args) => {
             case "ant":
                 try {
                     let antonym = await oxfordService.antonymService.getAntonyms(args[1]);
-                    await printingHelper.antonymPrinter(antonym);
+                    printingHelper.antonymPrinter(antonym);
                 } catch (error) {
                     console.log("The word you supplied does not have any antonyms.\n");
                 }
@@ -36,7 +36,7 @@ let argumentParser = async (numberOfArguments, args) => {
             case "ex":
                 try {
                     let example = await oxfordService.exampleService.getExamples(args[1]);
-                    await printingHelper.examplePrinter(example);
+                    printingHelper.examplePrinter(example);
                 } catch (error) {
                     console.log("The word you supplied does not have any examples.\n");
                 }
@@ -63,7 +63,7 @@ let argumentParser = async (numberOfArguments, args) => {
             }
             break;
         case "help":
-            await printingHelper.helpPrinter();
+            printingHelper.helpPrinter();
             break;
         default:
             try {
@@ -79,7 +79,7 @@ let argumentParser = async (numberOfArguments, args) => {
         await wordOfTheDayService.getWordOfTheDay();
     }
     else
-        console.log("Invalid number of arguments. Please look through the help section for more details.");
+        console.log("Invalid number of arguments. Please refer to the documentation on https://www.github.com/gopal131072/CLIDictionary");
 }
 
 module.exports = {
