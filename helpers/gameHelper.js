@@ -5,12 +5,15 @@ const prompt = require("prompt");
 const dictionaryService = require("../services/dictionaryService");
 const printingHelper = require("../helpers/printingHelper");
 
+// Starts off the entire game chain
 let startGame = async (word, definition, synonym, antonym, hints) => {
     printingHelper.gamePrinter(hints);
     await promptAnswer(word, definition, synonym, antonym, hints);
 };
 
+// Prompts the user to enter a guess.
 let promptAnswer = async (word, definition, synonym, antonym, hints) => {
+    // The promise wrapper lets us await this entire function.
     let answer = await new Promise ((resolve, reject) => {
         prompt.message = "Guess the word";
         prompt.get("Answer", (error, result) => {
@@ -34,15 +37,17 @@ let promptAnswer = async (word, definition, synonym, antonym, hints) => {
     }
 };
 
+// Final prompt for guess
 let promptFinalAnswer = async (word, definition, synonym, antonym, hints) => {
+    // The promise wrapper lets us await this entire function.
     let answer = await new Promise ((resolve, reject) => {
-        prompt.message = "Guess the word";
-        prompt.get("Answer", (error, result) => {
+        prompt.message = "This is your final chance!";
+        prompt.get("Guess", (error, result) => {
             if (synonym != null)
-                synonymExists = synonym.indexOf(result["Answer"]);
+                synonymExists = synonym.indexOf(result["Guess"]);
             else
                 synonymExists = -1;
-            if (word == result["Answer"] || synonymExists != -1) {
+            if (word == result["Guess"] || synonymExists != -1) {
                 resolve(true);
             }
             else {
@@ -59,6 +64,7 @@ let promptFinalAnswer = async (word, definition, synonym, antonym, hints) => {
     }
 };
 
+// Failiure scenario, user is given choices on what to do.
 let promptChoice = async (word, definition, synonym, antonym, hints) => {
     printingHelper.choicePrinter();
     choice = await new Promise ((resolve, reject) => {
@@ -88,7 +94,10 @@ let promptChoice = async (word, definition, synonym, antonym, hints) => {
     }
 };
 
+// A random hint is generated based on how many definitions/synonyms/antonyms the word has.
+// If the hint is the word itself scrambled then the user will not be given any more hints.
 let generateHints = async (word, definition, synonym, antonym, hints) => {
+    // Ensure that only hints that are available are generated.
     if (typeof synonym != "undefined" && typeof antonym != "undefined" && typeof definition != "undefined" && synonym != null && antonym != null && definition != null) {
         if (antonym.length > hints.antonyms.length && synonym.length > hints.synonyms.length && definition.length > hints.definitions.length)
             emptyHandler = 4;
@@ -143,6 +152,7 @@ let generateHints = async (word, definition, synonym, antonym, hints) => {
     }
 };
 
+// Helper function to scramble the word.
 let jumbleWord = (word) => {
     let temp = word.split(""),
         len = temp.length;
@@ -158,6 +168,5 @@ let jumbleWord = (word) => {
 };
 
 module.exports = {
-    startGame,
-    promptAnswer
-}
+    startGame
+};

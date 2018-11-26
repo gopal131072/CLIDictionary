@@ -5,6 +5,7 @@ const axios = require("axios");
 const oxfordService = require("../services");
 const printingHelper = require("../helpers/printingHelper");
 
+// Combines services for definitions, synonyms/antonyms and examples, with modular error handling.
 let getDictionary = async (word) => {
         try {
             let definition = await oxfordService.definitionService.getDefinition(word);
